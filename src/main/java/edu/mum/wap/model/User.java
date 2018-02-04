@@ -1,4 +1,4 @@
 package edu.mum.wap.model;
 
-public class User    {
+public class User {
 }
