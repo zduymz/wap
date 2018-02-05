@@ -98,12 +98,43 @@ function loginEvent(){
     $.post("/login", {"uname": uname, "upassword": upassword}).done(checkLoginReturn).fail();
 }
 
+function registerEvent() {
+    function checkRegisterReturn(data) {
+        // console.log(data);
+        if (data.result == "successful") {
+           registerSuccess();
+        } else {
+            registerFail(data.reason);
+        }
+    }
+    function registerSuccess() {
+        $("#id02").hide();
+        $("#popupContent ").text("New account is created. Please login");
+        $("#id03").show();
+    }
+
+    function registerFail(reason) {
+        $("#id02").hide();
+        $("#popupContent ").text("Error: " + reason);
+        $("#id03").show();
+    }
+
+
+    let uname = $("#id02 input[name='uname']").val();
+    let upassword = $("#id02 input[name='upassword']").val();
+    let uemail = $("#id02 input[name='uemail']").val();
+    let upasswordCheck = $("#id02 input[name='upasswordCheck']").val();
+    $.post("/register", {"uname": uname, "upassword": upassword, "uemail": uemail, "upasswordCheck": upasswordCheck})
+        .done(checkRegisterReturn)
+        .fail();
+}
 // bind event on startup
 $(getMovieList);
 $(function(){
     $("#loginlistener").click(enableLogin);
     $("#registerlistener").click(enableRegister);
     $("#login_submit").click(loginEvent);
+    $("#register_submit").click(registerEvent);
     $("#closePopup").click(disablePopup);
     $(window).click(disableLogin);
     $(window).click(disableRegister);
