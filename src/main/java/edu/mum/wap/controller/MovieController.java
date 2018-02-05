@@ -18,13 +18,13 @@ public class MovieController extends HttpServlet {
     private static final String LIST = "list";
     private static final String MOVIE = "/movie/";
     private MovieDAO dao;
-    //private ObjectMapper mapper;
+    private ObjectMapper mapper;
 
 
     @Override
     public void init() throws ServletException {
         dao = new MovieDAO();
-        /*mapper = new ObjectMapper();*/
+        mapper = new ObjectMapper();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MovieController extends HttpServlet {
             if(movie != null) {
                 try {
                     json = mapper.writeValueAsString(movie);
-                } catch (JsonProcessingException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
