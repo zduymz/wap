@@ -1,0 +1,25 @@
++ LOGIN
+Request: /api/login
+Method: POST
+Parameter: uname, upassword, remember
+Response:
+    - success:
+    - fail:
+
++ REGISTER
+Request: /api/register
+METHOD: POST
+Parameter: uname, uemail, upassword, upasswordCheck
+Response:
+    - success:
+    - fail:
+
+
++ GET ALL MOVIES
+Request: /api/movies/list
+Response:
+
+
++ GET CINEMA BY MOVIE ID
+Request: /api/movies/<movie_id>
+Response:
