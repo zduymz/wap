@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/schedule.css">
     <link rel="stylesheet" href="/resources/css/font.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.css">
+    <link rel="stylesheet" href="/resources/css/schedule.css">
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/js/schedule.js"></script>
 </head>
 <body>
 <div id="ci-header">
@@ -18,8 +20,8 @@
             </div>
         </div>
         <div class="col-2">
-            <div class="header-login">
-                <a href="/login">Login</a>
+            <div id="loginlistener" class="header-login">
+                <a href="/#">Login</a>
             </div>
         </div>
     </div>
@@ -82,10 +84,56 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">Chọn Suat</h4>
                 </div>
+                <ul class="list-group">
+                    <li class="fake">Please choose time</li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
+<div id="id01" class="login-form">
+    <form class="modal-content" action="/login" method="post">
+        <div class="login-form-type">
+            <a>LOGIN </a>
+        </div>
+        <div class="login-form-container">
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="upassword" required>
+            <label><input type="checkbox" checked="checked"> Remember me</label>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+
+<div id="id02" class="login-form">
+    <form class="modal-content" action="/register" method="post">
+        <div class="login-form-type">
+            <a>REGISTER</a>
+        </div>
+        <div class="login-form-container">
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="upassword" required>
+            <label><b>ReEnter Password</b></label>
+            <input type="password" placeholder="Enter Password" name="upassword" required>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
