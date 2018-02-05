@@ -6,6 +6,7 @@ public class Cinema {
     private String id;
     private String address;
     private String name;
-    private Integer chairs;
+//    private Integer chairs;
     private ArrayList<ShowDate> showdates;
+    private Integer[][] seats = new Integer[10][10];
 }

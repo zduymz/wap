@@ -1,5 +1,7 @@
 package edu.mum.wap.model;
 
+import java.util.ArrayList;
+
 public class Movie {
     private String id;
     private String description;
@@ -8,6 +10,7 @@ public class Movie {
     private String imageLandscape;
     private String imagePortrait;
     private String imdb;
+    private ArrayList<Cinema> cinemas;
 
     public Movie(String id, String description, String duration, String name, String imageLandscape, String imagePortrait, String imdb) {
         this.id = id;
