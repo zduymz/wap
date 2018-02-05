@@ -24,10 +24,20 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("uname"),req.getParameter("upassword")) ;
+        String json = "";
+        Result result = null;
         resp.setContentType("application/json;charset=UTF-8");
-        Result result = dao.addUser(user);
-        String json = mapper.writeValueAsString(result);
+        String pass = req.getParameter("upassword");
+        String repass = req.getParameter("upasswordCheck");
+        String name = req.getParameter("uname");
+        String email = req.getParameter("uemail");
+        if(pass.equals(repass)) {
+            User user = new User(name, pass, email);
+            result = dao.addUser(user);
+        } else {
+            result = new Result(false, "Re-checked password is not matched");
+        }
+        json = mapper.writeValueAsString(result);
         resp.getWriter().write(json);
     }
 }
