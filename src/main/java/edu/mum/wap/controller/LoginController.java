@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet({"/login", "/register"})
 public class LoginController extends HttpServlet{
+    private static final String LOGIN = "/login";
+    private static final String REGISTER = "/register";
     private UserDAO dao;
     private ObjectMapper mapper;
     @Override
@@ -24,13 +26,30 @@ public class LoginController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("uname"),req.getParameter("upassword")) ;
+        String param = req.getRequestURI();
         resp.setContentType("application/json;charset=UTF-8");
-        String json = "";
-        if(dao.verifyUser(user)) {
-            json = mapper.writeValueAsString(new Result(true));
+        String json;
+        if(param.equals(LOGIN)) {
+            User user = new User(req.getParameter("uname"), req.getParameter("upassword"));
+            if (dao.verifyUser(user)) {
+                json = mapper.writeValueAsString(new Result(true));
+            } else {
+                json = mapper.writeValueAsString(new Result(false));
+            }
         } else {
-            json = mapper.writeValueAsString(new Result(false));
+            Result result;
+            resp.setContentType("application/json;charset=UTF-8");
+            String pass = req.getParameter("upassword");
+            String repass = req.getParameter("upasswordCheck");
+            String name = req.getParameter("uname");
+            String email = req.getParameter("uemail");
+            if(pass.equals(repass)) {
+                User user = new User(name, pass, email);
+                result = dao.addUser(user);
+            } else {
+                result = new Result(false, "Re-checked password is not matched");
+            }
+            json = mapper.writeValueAsString(result);
         }
         resp.getWriter().write(json);
     }
