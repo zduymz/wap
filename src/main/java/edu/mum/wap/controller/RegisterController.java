@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
-public class LoginController extends HttpServlet{
+@WebServlet("/register")
+public class RegisterController extends HttpServlet {
     private UserDAO dao;
     private ObjectMapper mapper;
     @Override
@@ -26,12 +26,8 @@ public class LoginController extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(req.getParameter("uname"),req.getParameter("upassword")) ;
         resp.setContentType("application/json;charset=UTF-8");
-        String json = "";
-        if(dao.verifyUser(user)) {
-            json = mapper.writeValueAsString(new Result(true));
-        } else {
-            json = mapper.writeValueAsString(new Result(false));
-        }
+        Result result = dao.addUser(user);
+        String json = mapper.writeValueAsString(result);
         resp.getWriter().write(json);
     }
 }

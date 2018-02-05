@@ -1,5 +1,6 @@
 package edu.mum.wap.dao;
 
+import edu.mum.wap.model.Result;
 import edu.mum.wap.model.User;
 
 import java.util.HashMap;
@@ -12,13 +13,16 @@ public class UserDAO {
         moviesDb.put("duy",new User("duy","1234"));
     }
 
-    public boolean addUser(User user) {
+    public Result addUser(User user) {
         boolean ret = false;
+        String reason = "";
         if(!moviesDb.containsKey(user.getUsername())) {
             ret = true;
             moviesDb.put(user.getUsername(),user);
+        } else {
+            reason = "User is already exists";
         }
-        return ret;
+        return new Result(ret, reason);
     }
 
     public void deleteUser(String userName) {
