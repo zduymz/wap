@@ -1,6 +1,7 @@
 package edu.mum.wap.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Movie {
     private String id;
@@ -10,7 +11,6 @@ public class Movie {
     private String imageLandscape;
     private String imagePortrait;
     private String imdb;
-    private ArrayList<Cinema> cinemas;
 
     public Movie(String id, String description, String duration, String name, String imageLandscape, String imagePortrait, String imdb) {
         this.id = id;
@@ -20,6 +20,20 @@ public class Movie {
         this.imageLandscape = imageLandscape;
         this.imagePortrait = imagePortrait;
         this.imdb = imdb;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(id, movie.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 
     public String getId() {

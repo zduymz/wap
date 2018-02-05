@@ -2,7 +2,9 @@ package edu.mum.wap.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.mum.wap.dao.CinemaDAO;
 import edu.mum.wap.dao.MovieDAO;
+import edu.mum.wap.model.Cinema;
 import edu.mum.wap.model.Movie;
 
 import javax.servlet.ServletException;
@@ -18,12 +20,14 @@ public class MovieController extends HttpServlet {
     private static final String LIST = "list";
     private static final String MOVIE = "/movie/";
     private MovieDAO dao;
+    private CinemaDAO cineDao;
     private ObjectMapper mapper;
 
 
     @Override
     public void init() throws ServletException {
         dao = new MovieDAO();
+        cineDao = new CinemaDAO();
         mapper = new ObjectMapper();
     }
 
@@ -42,9 +46,10 @@ public class MovieController extends HttpServlet {
             }
         } else {
             Movie movie = dao.getMovieById(param);
+            List<Cinema> list = cineDao.getCinemaList(movie);
             if(movie != null) {
                 try {
-                    json = mapper.writeValueAsString(movie);
+                    json = mapper.writeValueAsString(list);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
