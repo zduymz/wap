@@ -20,8 +20,14 @@
             </div>
         </div>
         <div class="col-2">
-            <div id="loginlistener" class="header-login">
-                <a href="/#">Login</a>
+            <!-- Check cookie, session on jsp to decide show welcome or login -->
+            <div class="entry">
+                <div id="loginlistener" class="header-login">
+                    <a>Login</a>
+                </div> /
+                <div id="registerlistener" class="header-login">
+                    <a>Register</a>
+                </div>
             </div>
         </div>
     </div>
@@ -42,7 +48,7 @@
                     <h4 class="panel-title">Chọn phim</h4>
                 </div>
                 <ul class="list-group">
-                    <!-- START -->
+                    <!-- Sample
                     <li>
                         <div class="showtime-row">
                             <img src="/resources/media/movies/guardians-of-the-tombs/thumbnail.jpg" alt="thumbnail">
@@ -51,25 +57,8 @@
                                 <p class="title-sub">IMDB: 5.8</p>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="showtime-row">
-                            <img src="/resources/media/movies/guardians-of-the-tombs/thumbnail.jpg"/>
-                            <div class="title-movie">
-                                <p>GUARDIAN OF THE TOMB</p>
-                                <p class="title-sub">IMDB: 5.8</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="showtime-row">
-                            <img src="/resources/media/movies/guardians-of-the-tombs/thumbnail.jpg"/>
-                            <div class="title-movie">
-                                <p>GUARDIAN OF THE TOMB</p>
-                                <p class="title-sub">IMDB: 5.8</p>
-                            </div>
-                        </div>
-                    </li>
+                    </li> -->
+
                 </ul>
             </div>
             <div id="col-m-2">
@@ -93,7 +82,7 @@
 </div>
 
 <div id="id01" class="login-form">
-    <form class="modal-content" action="/login" method="post">
+    <div class="modal-content">
         <div class="login-form-type">
             <a>LOGIN </a>
         </div>
@@ -102,38 +91,38 @@
             <input type="text" placeholder="Enter Username" name="uname" required>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="upassword" required>
-            <label><input type="checkbox" checked="checked"> Remember me</label>
-            <button type="submit">Login</button>
+            <label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+            <button id="login_submit">Login</button>
         </div>
-    </form>
+    </div>
 </div>
 
 <div id="id02" class="login-form">
-    <form class="modal-content" action="/register" method="post">
+    <div class="modal-content">
         <div class="login-form-type">
             <a>REGISTER</a>
         </div>
         <div class="login-form-container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" placeholder="Your Name" name="uname" required>
+            <label><b>Email</b></label>
+            <input type="email" placeholder="Your Email" name="uemail" required>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="upassword" required>
-            <label><b>ReEnter Password</b></label>
-            <input type="password" placeholder="Enter Password" name="upassword" required>
+            <label><b>Re-enter password</b></label>
+            <input type="password" placeholder="Confirm Password" name="upasswordCheck" required>
             <button type="submit">Register</button>
         </div>
-    </form>
+    </div>
 </div>
-<script>
-    // Get the modal
-    var modal = document.getElementById('id01');
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
+<div id="id03" class="login-form">
+    <div class="modal-content">
+        <div> </div>
+        <div class="login-form-container">
+            <p id="popupContent"></p>
+            <button id="closePopup">Close</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
