@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,14 +22,25 @@
         </div>
         <div class="col-2">
             <!-- Check cookie, session on jsp to decide show welcome or login -->
-            <div class="entry">
-                <div id="loginlistener" class="header-login">
-                    <a>Login</a>
-                </div> /
-                <div id="registerlistener" class="header-login">
-                    <a>Register</a>
-                </div>
-            </div>
+            <c:choose>
+                <c:when test="${username}">
+                    <%-- user already logged in--%>
+                    <div class="welcome">
+                        <p>Welcome: ${username} <a href="/logout">[Logout]</a></p>
+
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="entry">
+                        <div id="loginlistener" class="header-login">
+                            <a>Login</a>
+                        </div> /
+                        <div id="registerlistener" class="header-login">
+                            <a>Register</a>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>
@@ -75,11 +87,21 @@
                 </div>
                 <ul class="list-group">
                     <li class="fake">Please choose time</li>
+                    <!--<li>-->
+                        <!--<div class="showtime-row">-->
+                            <!--<p>Wed, 07/02/2018</p>-->
+                            <!--<a class="showtimes-list">14:30</a>-->
+                            <!--<a class="showtimes-list">15:30</a>-->
+                            <!--<a class="showtimes-list">16:30</a>-->
+                            <!--<input class="showtimes-tickets" placeholder="Ticket" type="text">-->
+                        <!--</div>-->
+                    <!--</li>-->
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<input type="button" id="click-continue" value="Continue >>" class="show-button">
 <input type="hidden" id="movie_id" name="movie_id">
 <input type="hidden" id="cinema_id" name="cinema_id">
 <input type="hidden" id="time_id" name="time_id">
@@ -93,7 +115,7 @@
             <input type="text" placeholder="Enter Username" name="uname" required>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="upassword" required>
-            <label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+            <label><input type="checkbox" name="remember"> Remember me</label>
             <button id="login_submit">Login</button>
         </div>
     </div>
