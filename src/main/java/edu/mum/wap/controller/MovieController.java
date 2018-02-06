@@ -6,6 +6,7 @@ import edu.mum.wap.dao.CinemaDAO;
 import edu.mum.wap.dao.MovieDAO;
 import edu.mum.wap.dao.TicketDAO;
 import edu.mum.wap.model.*;
+import javafx.util.Pair;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/seat/*", "/confirmation/*"})
 public class MovieController extends HttpServlet {
@@ -95,12 +95,25 @@ public class MovieController extends HttpServlet {
                     break;
                 }
                 List<ShowDate> list = cineDao.getShowDate(cineId, movie);
-                if(list != null) {
-                    try {
-                        json = mapper.writeValueAsString(list);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                Map<String, Show> listShow = new HashMap<>();
+                for(ShowDate date : list) {
+                    if(listShow.isEmpty()) {
+                        Show show = new Show(date.getShowDate(), date.getDayOfWeekLabel());
+                        show.addTime(date.getShowTime());
+                        listShow.put(date.getShowDate(), show);
+                    } else {
+                        Show show = listShow.get(date.getShowDate());
+                        if(show == null) {
+                            listShow.put(date.getShowDate(), new Show(date));
+                        } else {
+                            show.addTime(date.getShowTime());
+                        }
                     }
+                }
+                try {
+                    json = mapper.writeValueAsString(listShow.values());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 break;
             case SEAT: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
@@ -131,8 +144,9 @@ public class MovieController extends HttpServlet {
                 String now = ZonedDateTime.now().toString();
                 try {
                     if(cineDao.updateSeat(seats, cineIdConfirm, timeConfirm)) {
-                        // TODO: Get user from session
-                        Ticket ticket = new Ticket(movieIdConfirm, "user1",
+                        HttpSession session = req.getSession();
+                        User user = (User)session.getAttribute("user");
+                        Ticket ticket = new Ticket(movieIdConfirm, user.getUsername(),
                                 cineIdConfirm, timeConfirm, now, seats);
                         ticketDAO.addTicket(ticket);
                         json = mapper.writeValueAsString(ticket);
@@ -140,7 +154,7 @@ public class MovieController extends HttpServlet {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+                break;
             default:
                 break;
         }
