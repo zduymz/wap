@@ -115,7 +115,7 @@
             <input type="text" placeholder="Enter Username" name="uname" required>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="upassword" required>
-            <label><input type="checkbox" checked="checked" name="remember"> Remember me</label>
+            <label><input type="checkbox" name="remember"> Remember me</label>
             <button id="login_submit">Login</button>
         </div>
     </div>

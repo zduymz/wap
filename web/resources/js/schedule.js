@@ -188,8 +188,9 @@ function loginEvent(){
 
     let uname = $("#id01 input[name='uname']").val();
     let upassword = $("#id01 input[name='upassword']").val();
+    let rememberMe = $("#id01 input[name=remember]").is(":checked");
 
-    $.post("/login", {"uname": uname, "upassword": upassword}).done(checkLoginReturn).fail();
+    $.post("/login", {"uname": uname, "upassword": upassword, "remember": rememberMe}).done(checkLoginReturn).fail();
 }
 
 function registerEvent() {
