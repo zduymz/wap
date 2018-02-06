@@ -32,13 +32,13 @@ public class CinemaDAO {
                 movies.getMovieById("1"), seat);
         c1.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
                 movies.getMovieById("1"), seat);
-        c2.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
+        c2.addSchedule(new ShowDate("2/14/2018", "Wed", "17:30"),
                 movies.getMovieById("1"), seat);
         c2.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
                 movies.getMovieById("1"), seat);
-        c3.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
+        c3.addSchedule(new ShowDate("2/14/2018", "Wed", "18:30"),
                 movies.getMovieById("1"), seat);
-        c4.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
+        c4.addSchedule(new ShowDate("2/14/2018", "Wed", "10:30"),
                 movies.getMovieById("1"), seat);
         c2.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
                 movies.getMovieById("2"), seat);

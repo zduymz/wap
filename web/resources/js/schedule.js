@@ -49,22 +49,61 @@ function checkPassword() {
 function getMovieList() {
     function getCinema(self) {
         function getTime(self) {
+            function decorateTime(data) {
+                $("#col-m-3 li[class=fake]").hide();
+                $("#col-m-3 li").not("[class=fake]").remove();
+
+                function showTicketPick(self) {
+                    $("#col-m-3 .showtime-row input").hide();
+                    $("#col-m-3 .showtime-row a").css("color", "#555");
+                    self.css("color", "#f26b38")
+                    $("#click-continue").hide();
+                    self.parent().children("input[class=showtimes-tickets]").show();
+                }
+
+                // console.log(data);
+                for (let item of data) {
+                    let li = $("<li>");
+                    let div = $("<div>", {"class": "showtime-row"});
+                    let p = $("<p>").text(item.dayOfWeekLabel + " " + item.showDate);
+                    div.append(p);
+                    for (let t of item.showTime) {
+                        let a = $("<a>", {"class": "showtimes-list"}).text(t);
+                        a.click(function(evt){
+                            let self = $(this);
+                            showTicketPick(self);
+                            evt.stopPropagation();
+                        })
+                        div.append(a);
+                    }
+                    let input = $("<input>", {"type": "text", "class":"showtimes-tickets", "placeholder": "Ticket"}).hide();
+                    input.keyup(checkNumberOnly());
+                    div.append(input);
+                    li.append(div);
+                    $("#col-m-3 .list-group").append(li);
+                }
+
+            }
 
             const cinema_id = self.children("input[name=cinemaId]").val();
-            $.post("/" + cinema_id)
-                .done(
-                    function(){
-                        console.log(cinema_id);
-                    }
-                )
-                .fail()
+            const movie_id = $("#movie_id").val();
+            $("#cinema_id").val(cinema_id);
+            $("#col-m-2").find(".showtime-row p").css("color", "#555");
+            self.find(".showtime-row p").css("color", "#f26b38");
+
+            // $.get("/showtime/movieid="+ movie_id +",cinemaid=" + cinema_id)
+            //     .done(decorateTime)
+            //     .fail()
+            let dumpdata = [{"showDate":"2/14/2018","dayOfWeekLabel":"Wed","showTime": ["14:30", "15:40", "18:30"]},
+                {"showDate":"2/15/2018","dayOfWeekLabel":"Thu","showTime": ["10:30", "11:40", "12:30", "12:30", "12:30", "12:30"]}];
+            decorateTime(dumpdata);
         }
 
         function decorateCinema(data) {
             $("#col-m-2 li[class=fake]").hide();
             $("#col-m-2 li").not("[class=fake]").remove();
             for(let item of data) {
-                // console.log(item);
+                console.log(item);
                 let li = $("<li>");
                 let div1 = $("<div>", {"class": "showtime-row"});
                 let p = $("<p>").text(item.name);
@@ -83,7 +122,8 @@ function getMovieList() {
 
         const movie_id = self.children("input[name=movieId]").val();
         $("#movie_id").val(movie_id);
-        $.get("/movie/" + movie_id)
+
+        $.get("/cinema/movieid=" + movie_id)
             .done(decorateCinema)
             .fail();
     }
@@ -102,6 +142,13 @@ function getMovieList() {
             // add listener event on li
             li.click(function(){
                 let self = $(this);
+                $("#cinema_id").val("");
+                $("#time_id").val("");
+                $("#col-m-3 li").not("[class=fake]").remove();
+                $("#col-m-3 li[class=fake]").show();
+                $("#click-continue").hide();
+                $("#col-m-1").find(".title-movie p").css("color", "#555");
+                self.find(".title-movie p").css("color", "#f26b38");
                 getCinema(self);
             })
 
@@ -128,8 +175,9 @@ function loginEvent(){
         $("#id01").hide();
 
         let div = $("<div>", {"class": "welcome"});
-        let p = $("<p>").text("Welcome: " + $("#id01 input[name='uname']").val());
-        $(".col-2").append(div.append(p));
+        let p = $("<p>").text("Welcome: " + $("#id01 input[name='uname']").val() + " ");
+        let a = $("<a>", {"href":"/logout"}).text("[Logout]");
+        $(".col-2").append(div.append(p.append(a)));
     };
 
     function loginFail() {
@@ -173,9 +221,60 @@ function registerEvent() {
         .done(checkRegisterReturn)
         .fail();
 }
+
+// check Input number not working
+function checkNumberOnly() {
+    return function(evt) {
+        let top= evt.target.offsetTop;
+        let patt = new RegExp("[0-9]+");
+        let res = patt.test($(this).val());
+        if (res == true) {
+            let v = parseInt($(this).val());
+            if (v > 0 && v <= 100) {
+                $("#click-continue").css("top", top).show();
+                return true;
+            }
+        }
+        $(this).val("");
+    }
+
+    // $(".showtimes-tickets").keyup(function(evt){
+    //
+    //
+    // })
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function clickContinueEvent() {
+    let uname = getCookie("login");
+    let uid = getCookie("login_id");
+    if (uname == "" || uid == "") {
+        // warn user login
+        $("#loginlistener").click();
+    } else {
+
+    }
+}
+
 // bind event on startup
 $(getMovieList);
 $(function(){
+    $("#click-continue").hide();
     $("#loginlistener").click(enableLogin);
     $("#registerlistener").click(enableRegister);
     $("#login_submit").click(loginEvent);
@@ -184,4 +283,7 @@ $(function(){
     $(window).click(disableLogin);
     $(window).click(disableRegister);
     $(window).click(disablePopup);
+    $("#click-continue").click(clickContinueEvent);
 });
+
+$(checkNumberOnly);

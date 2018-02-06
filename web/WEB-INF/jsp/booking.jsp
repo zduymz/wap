@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,14 +22,19 @@
         </div>
         <div class="col-2">
             <!-- Check cookie, session on jsp to decide show welcome or login -->
-            <div class="entry">
-                <div id="loginlistener" class="header-login">
-                    <a>Login</a>
-                </div> /
-                <div id="registerlistener" class="header-login">
-                    <a>Register</a>
+            <c:if test="${username}">
+                <div class="welcome">
+                    <p>Welcome: ${username} <a href="/logout">[Logout]</a></p>
                 </div>
-            </div>
+            </c:if>
+            <%--<div class="entry">--%>
+                <%--<div id="loginlistener" class="header-login">--%>
+                    <%--<a>Login</a>--%>
+                <%--</div> /--%>
+                <%--<div id="registerlistener" class="header-login">--%>
+                    <%--<a>Register</a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
     </div>
 </div>
@@ -246,5 +252,8 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="movie_id" name="movie_id">
+<input type="hidden" id="cinema_id" name="cinema_id">
+<input type="hidden" id="time_id" name="time_id">
 </body>
 </html>

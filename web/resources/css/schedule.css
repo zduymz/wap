@@ -57,6 +57,20 @@ body {
     margin-top: 5px;
 }
 
+.welcome a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.welcome a:hover {
+    text-decoration: underline;
+}
+
+.welcome a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 #ci-navbar {
     clear: both;
     background-color: #000000;
@@ -148,7 +162,7 @@ body {
 }
 
 .list-group li .showtime-row {
-    height: 40px;
+    /*height: 40px;*/
 }
 
 .list-group li .showtime-row img {
@@ -256,4 +270,41 @@ body {
 #id03 .login-form-container p {
     margin: 10px;
     text-align: center
+}
+
+a.showtimes-list {
+    margin: 10px 10px 10px 0;
+    padding: 5px 10px;
+    border: 1px solid #ced0da;
+    color: #43464b;
+    display: inline-block;
+}
+
+a.showtimes-list:hover {
+    border: 1px solid #f26b38;
+    color: #f26b38;
+}
+
+input.showtimes-tickets {
+    width: 60px;
+    height: 27px;
+    color: #43464b;
+    text-align: center;
+    font-size: inherit;
+}
+
+#click-continue {
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #f26b38;
+    padding: 10px;
+    line-height: 1;
+    border: transparent;
+    cursor: pointer;
+}
+
+.show-button {
+    position: fixed;
+    right: 10px;
+    /*bottom: 50px;*/
 }
