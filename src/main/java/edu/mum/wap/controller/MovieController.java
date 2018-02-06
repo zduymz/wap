@@ -118,7 +118,7 @@ public class MovieController extends HttpServlet {
                     }
                 }
                 break;
-            case CONFIRM: // /api/confirmation/movieid=<movie_id>,cinemaid=<cinema_id>,showtime="EEE_mm/dd/yyyy_HH:mm",seats="A1, A2"
+            case CONFIRM: // /api/confirmation/movieid=<movie_id>,cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm,seats=A1_A2
                 Scanner scannerConfirmation = new Scanner(param);
                 String movieIdConfirm = scannerConfirmation.useDelimiter(",")
                         .next().replace("movieid", "");

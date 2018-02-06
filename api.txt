@@ -29,9 +29,9 @@ Request: /api/showtime/movieid=<movie_id>,cinemaid=<cinema_id>
 Response:
 
 + GET SEATS BY CINEMA ID, SHOWTIME
-Request: /api/seat/cinemaid=<cinema_id>,showtime="EEE_mm/dd/yyyy_HH:mm"
+Request: /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
 Response:
 {"seats":[[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0,0,0]]}
 
 + BOOKING CONFIRMATION BY SHOWTIME, SEAT POSITION
-Request: /api/confirmation/cinemaid=<cinema_id>,showtime="EEE_mm/dd/yyyy_HH:mm",seats="A1, A2"
+Request: /api/confirmation/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm,seats=A1_A2
