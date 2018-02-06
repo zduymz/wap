@@ -70,7 +70,6 @@ body {
 }
 
 #ci-navbar .primary-nav .sub-nav {
-    /*background: url("/resources/media/line-menu.png") no-repeat center right;*/
     list-style: none;
     display: table-cell;
     text-align: center;
@@ -83,7 +82,7 @@ body {
     text-decoration:  none;
 }
 
-.ci-navbar .primary-nav li:not(:last-child) {
+#ci-navbar .primary-nav .sub-nav:not(:last-child) {
     background: url("/resources/media/line-menu.png") no-repeat center right;
 }
 

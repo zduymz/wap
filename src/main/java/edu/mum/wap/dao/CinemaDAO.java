@@ -14,10 +14,10 @@ public class CinemaDAO {
     private List<Cinema> cinemasDAO = new ArrayList<>();
     private MovieDAO movies = new MovieDAO();
     {
-        Cinema c1 = new Cinema("1", "1215 Theatre Drive, Ottumwa, IA 52501", "CEC - Ottumwa 8 Theatre");
-        Cinema c2 = new Cinema("2", "831 Ave G, Fort Madison, IA 52627", "Fox Theater - Fort Madison");
-        Cinema c3 = new Cinema("3", "1602 Sycamore St, Iowa City, IA 52240", "Marcus Sycamore Cinema");
-        Cinema c4 = new Cinema("4", "550 S Gear Ave Suite #38, West Burlington, IA 52655\n", "CEC - Westland Mall 10");
+        Cinema c1 = new Cinema("1", "1215 Theatre Drive, Ottumwa, IA", "CEC - Ottumwa 8 Theatre");
+        Cinema c2 = new Cinema("2", "831 Ave G, Fort Madison, IA", "Fox Theater - Fort Madison");
+        Cinema c3 = new Cinema("3", "1602 Sycamore St, Iowa City, IA", "Marcus Sycamore Cinema");
+        Cinema c4 = new Cinema("4", "550 S Gear Ave, West Burlington, IA", "CEC - Westland Mall 10");
         c1.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
                 movies.getMovieById("1"), new Seat());
         c1.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
