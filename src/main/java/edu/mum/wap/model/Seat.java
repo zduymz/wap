@@ -1,17 +1,21 @@
 package edu.mum.wap.model;
 
-public class Seat {
-    private Integer[][] seats = new Integer[10][10];
+import java.util.HashMap;
+import java.util.Map;
 
-    public Seat(Integer[][] seats) {
+public class Seat {
+    //private Integer[][] seats = new Integer[10][10];
+    private Map<String, Integer[]> seats = new HashMap<>();
+
+    public Seat(Map<String, Integer[]> seats) {
         this.seats = seats;
     }
 
-    public Integer[][] getSeats() {
+    public Map<String, Integer[]> getSeats() {
         return seats;
     }
 
-    public void setSeats(Integer[][] seats) {
+    public void setSeats(Map<String, Integer[]> seats) {
         this.seats = seats;
     }
 }

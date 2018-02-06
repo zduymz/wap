@@ -16,13 +16,19 @@ public class CinemaDAO {
     private Map<String, Cinema> cinemasDAO = new HashMap<>();
     private MovieDAO movies = new MovieDAO();
     {
-        Integer[][] seat1 =
-                {{0, 1, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 0, 0, 0, 0, 0, 0, 0, 0},{0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                };
+
+        Map<String, Integer[]> seat1 = new HashMap<>();
+        seat1.put("A", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("B", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("C", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("D", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("G", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("I", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        seat1.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+
         Seat seat = new Seat(seat1);
         Cinema c1 = new Cinema("1", "1215 Theatre Drive, Ottumwa, IA", "CEC - Ottumwa 8 Theatre");
         Cinema c2 = new Cinema("2", "831 Ave G, Fort Madison, IA", "Fox Theater - Fort Madison");
@@ -40,9 +46,9 @@ public class CinemaDAO {
                 movies.getMovieById("1"), seat);
         c4.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
                 movies.getMovieById("1"), seat);
-        c2.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
+        c2.addSchedule(new ShowDate("2/15/2018", "Wed", "14:30"),
                 movies.getMovieById("2"), seat);
-        c2.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
+        c2.addSchedule(new ShowDate("2/15/2018", "Wed", "16:30"),
                 movies.getMovieById("3"), seat);
         c3.addSchedule(new ShowDate("2/14/2018", "Wed", "14:30"),
                 movies.getMovieById("2"), seat);
