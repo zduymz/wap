@@ -6,13 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TicketDAO {
-    /*private Map<Integer, Ticket> ticketsDb = new HashMap<>();
-    {
-    }
-*/
-    public boolean addTicket(Ticket ticket) {
-        boolean ret = false;
-        return ret;
+    private Map<Integer, Ticket> ticketsDb = new HashMap<>();
+
+    public void addTicket(Ticket ticket) {
+        ticketsDb.put(ticketsDb.size()+1,ticket);
     }
 
     public void deleteTicket(int id) {

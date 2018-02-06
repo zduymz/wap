@@ -1,21 +1,47 @@
 package edu.mum.wap.model;
 
-import java.util.Date;
-import java.util.Timer;
-
 public class Ticket {
     private String movieId;
     private String userId;
     private String cinemaId;
-    private Date time;
+    private String timeShow;
+    private String timeBook;
     private int numOfTicket;
+    private String seats;
 
-    public Ticket(String movieId, String userId, String cinemaId, Date time, int numOfTicket) {
+    public Ticket(String movieId, String userId, String cinemaId,
+                  String timeShow, String timeBook, String seat) {
         this.movieId = movieId;
         this.userId = userId;
         this.cinemaId = cinemaId;
-        this.time = time;
-        this.numOfTicket = numOfTicket;
+        this.timeShow = timeShow;
+        //this.numOfTicket = numOfTicket;
+        this.seats = seat;
+        this.timeBook = timeBook;
+    }
+
+    public String getTimeShow() {
+        return timeShow;
+    }
+
+    public void setTimeShow(String timeShow) {
+        this.timeShow = timeShow;
+    }
+
+    public String getTimeBook() {
+        return timeBook;
+    }
+
+    public void setTimeBook(String timeBook) {
+        this.timeBook = timeBook;
+    }
+
+    public String getSeats() {
+        return seats;
+    }
+
+    public void setSeats(String seats) {
+        this.seats = seats;
     }
 
     public String getMovieId() {
@@ -40,14 +66,6 @@ public class Ticket {
 
     public void setCinemaId(String cinemaId) {
         this.cinemaId = cinemaId;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 
     public int getNumOfTicket() {
