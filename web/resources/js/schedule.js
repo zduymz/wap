@@ -45,10 +45,52 @@ function checkPassword() {
     confirm_password.onkeyup = validatePassword;
 }
 
+
 function getMovieList() {
+    function getCinema(self) {
+        function getTime(self) {
+
+            const cinema_id = self.children("input[name=cinemaId]").val();
+            $.post("/" + cinema_id)
+                .done(
+                    function(){
+                        console.log(cinema_id);
+                    }
+                )
+                .fail()
+        }
+
+        function decorateCinema(data) {
+            $("#col-m-2 li[class=fake]").hide();
+            $("#col-m-2 li").not("[class=fake]").remove();
+            for(let item of data) {
+                // console.log(item);
+                let li = $("<li>");
+                let div1 = $("<div>", {"class": "showtime-row"});
+                let p = $("<p>").text(item.name);
+                let p2 = $("<p>", {"class": "title-sub"}).text(item.address);
+                let hidden = $("<input>", {"name":"cinemaId", "type": "hidden", "value": item.id});
+
+                // add li listener
+                li.click(function(){
+                    let self = $(this);
+                    getTime(self);
+                })
+
+                $("#col-m-2 .list-group").append(li.append(div1.append(p, p2), hidden));
+            }
+        }
+
+        const movie_id = self.children("input[name=movieId]").val();
+        $("#movie_id").val(movie_id);
+        $.get("/movie/" + movie_id)
+            .done(decorateCinema)
+            .fail();
+    }
+
     function decorateMovie(data){
         for(let item of data) {
-            console.log(item);
+            // console.log(item);
             let li = $("<li>");
             let div1 = $("<div>", {"class": "showtime-row"});
             let image = $("<img>", {"src": item.imageLandscape, "alt": "thumbnail"});
@@ -58,6 +100,10 @@ function getMovieList() {
             let input = $("<input>", {"name":"movieId", "type": "hidden", "value": item.id});
 
             // add listener event on li
+            li.click(function(){
+                let self = $(this);
+                getCinema(self);
+            })
 
             $("#col-m-1 .list-group").append(li.append(input, div1.append(image, div2.append(p1, p2))));
             // $("#col-m-1 .list-group").append(hidden);
@@ -118,7 +164,6 @@ function registerEvent() {
         $("#popupContent ").text("Error: " + reason);
         $("#id03").show();
     }
-
 
     let uname = $("#id02 input[name='uname']").val();
     let upassword = $("#id02 input[name='upassword']").val();

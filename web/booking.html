@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/resources/css/font-awesome.css">
     <link rel="stylesheet" href="/resources/css/booking.css">
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/js/booking.js"></script>
 </head>
 <body>
 <div id="ci-header">
@@ -19,8 +20,14 @@
             </div>
         </div>
         <div class="col-2">
-            <div id="loginlistener" class="header-login">
-                <a href="/#">Login</a>
+            <!-- Check cookie, session on jsp to decide show welcome or login -->
+            <div class="entry">
+                <div id="loginlistener" class="header-login">
+                    <a>Login</a>
+                </div> /
+                <div id="registerlistener" class="header-login">
+                    <a>Register</a>
+                </div>
             </div>
         </div>
     </div>
@@ -36,6 +43,9 @@
 <div id="ci-movies">
     <div class="tab-container">
         <div class="tab-content">
+            <!-- class: selected
+                class: active
+             -->
             <div class="left-pane">
                 <div class="seat-border">
                     <div class="seat-map-wrapper">
@@ -215,12 +225,14 @@
                     <div class="img-containter">
                         <img src="/resources/media/movies/guardians-of-the-tombs/thumbnail.jpg">
                     </div>
+                    <!-- This information from JSP-->
+                    <input type="hidden" id="seatNo" name="seatNo" value="3">
                     <div class="ticket-container">
                         <h2 class="movie-name">GUARDIANS OF THE TOMBS</h2>
                         <div class="ticket-info">
                             <p>Cinema: <span id="cinema">Galaxy Quang Trung  | Rạp 7</span></p>
                             <p>Time: <span id="timeslot">09:25  | Wed, 07/02/2018</span></p>
-                            <p>Seat: <span id="seat">H5, A3, H4, H2, H1, H2, H3, H2, H1, H2, H2, H2, H2, H3, H3, H4</span></p>
+                            <p>Seat: <span id="seat"></span></p>
                         </div>
                         <div class="ticket-total-price">
                             <p>Total: <span id="total-price">100</span>$</p>
