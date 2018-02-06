@@ -44,7 +44,18 @@ body {
 }
 
 .header-login {
-    border: solid red 1px;
+    display: inline-block;
+    cursor: default;
+}
+
+.header-login:hover {
+    text-decoration: underline;
+    color: #f26b38;
+}
+
+.welcome {
+    color: #f26b38;
+    margin-top: 5px;
 }
 
 #ci-navbar {
@@ -193,6 +204,11 @@ ul {
 
 .seat-map-wrapper .seat-row li.selected {
     background-color: #e11c01;
+    color: #fff;
+}
+
+.seat-map-wrapper .seat-col li.active {
+    background-color: #7dc71d;
     color: #fff;
 }
 
