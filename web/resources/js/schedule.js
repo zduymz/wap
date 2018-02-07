@@ -47,88 +47,94 @@ function checkPassword() {
 
 
 function getMovieList() {
-    function getCinema(self) {
-        function getTime(self) {
-            function decorateTime(data) {
-                $("#col-m-3 li[class=fake]").hide();
-                $("#col-m-3 li").not("[class=fake]").remove();
-
-                function showTicketPick(self) {
-                    $("#col-m-3 .showtime-row input").hide();
-                    $("#col-m-3 .showtime-row a").css("color", "#555");
-                    self.css("color", "#f26b38")
-                    $("#click-continue").hide();
-                    self.parent().children("input[class=showtimes-tickets]").show();
-                }
-
-                // console.log(data);
-                for (let item of data) {
-                    let li = $("<li>");
-                    let div = $("<div>", {"class": "showtime-row"});
-                    let p = $("<p>").text(item.dayOfWeekLabel + " " + item.showDate);
-                    div.append(p);
-                    for (let t of item.showTime) {
-                        let a = $("<a>", {"class": "showtimes-list"}).text(t);
-                        a.click(function(evt){
-                            let self = $(this);
-                            showTicketPick(self);
-                            evt.stopPropagation();
-                        })
-                        div.append(a);
-                    }
-                    let input = $("<input>", {"type": "text", "class":"showtimes-tickets", "placeholder": "Ticket"}).hide();
-                    input.keyup(checkNumberOnly());
-                    div.append(input);
-                    li.append(div);
-                    $("#col-m-3 .list-group").append(li);
-                }
-
-            }
-
-            const cinema_id = self.children("input[name=cinemaId]").val();
-            const movie_id = $("#movie_id").val();
-            $("#cinema_id").val(cinema_id);
-            $("#col-m-2").find(".showtime-row p").css("color", "#555");
-            self.find(".showtime-row p").css("color", "#f26b38");
-
-            // $.get("/showtime/movieid="+ movie_id +",cinemaid=" + cinema_id)
-            //     .done(decorateTime)
-            //     .fail()
-            let dumpdata = [{"showDate":"2/14/2018","dayOfWeekLabel":"Wed","showTime": ["14:30", "15:40", "18:30"]},
-                {"showDate":"2/15/2018","dayOfWeekLabel":"Thu","showTime": ["10:30", "11:40", "12:30", "12:30", "12:30", "12:30"]}];
-            decorateTime(dumpdata);
-        }
-
-        function decorateCinema(data) {
-            $("#col-m-2 li[class=fake]").hide();
-            $("#col-m-2 li").not("[class=fake]").remove();
-            for(let item of data) {
-                console.log(item);
-                let li = $("<li>");
-                let div1 = $("<div>", {"class": "showtime-row"});
-                let p = $("<p>").text(item.name);
-                let p2 = $("<p>", {"class": "title-sub"}).text(item.address);
-                let hidden = $("<input>", {"name":"cinemaId", "type": "hidden", "value": item.id});
-
-                // add li listener
-                li.click(function(){
-                    let self = $(this);
-                    getTime(self);
-                })
-
-                $("#col-m-2 .list-group").append(li.append(div1.append(p, p2), hidden));
-            }
-        }
-
-        const movie_id = self.children("input[name=movieId]").val();
-        $("#movie_id").val(movie_id);
-
-        $.get("/cinema/movieid=" + movie_id)
-            .done(decorateCinema)
-            .fail();
-    }
 
     function decorateMovie(data){
+
+        function getCinema(self) {
+
+            function decorateCinema(data) {
+
+                function getTime(self) {
+                    function decorateTime(data) {
+                        $("#col-m-3 li[class=fake]").hide();
+                        $("#col-m-3 li").not("[class=fake]").remove();
+
+                        function showTicketPick(self) {
+                            $("#col-m-3 .showtime-row input").hide();
+                            $("#col-m-3 .showtime-row a").css("color", "#555");
+                            self.css("color", "#f26b38")
+                            $("#col-m-3 .showtime-row input").val("");
+                            $("#click-continue").hide();
+                            $("#time_id").val(self.parent().children("p").text() +" " + self.text());
+                            self.parent().children("input[class=showtimes-tickets]").show();
+                        }
+
+                        // console.log(data);
+                        for (let item of data) {
+                            let li = $("<li>");
+                            let div = $("<div>", {"class": "showtime-row"});
+                            let p = $("<p>").text(item.dayOfWeekLabel + " " + item.showDate);
+                            div.append(p);
+                            for (let t of item.showTime) {
+                                let a = $("<a>", {"class": "showtimes-list"}).text(t);
+                                a.click(function(evt){
+                                    let self = $(this);
+                                    showTicketPick(self);
+                                    evt.stopPropagation();
+                                })
+                                div.append(a);
+                            }
+                            let input = $("<input>", {"type": "text", "class":"showtimes-tickets", "placeholder": "Ticket"}).hide();
+                            input.keyup(checkNumberOnly());
+                            div.append(input);
+                            li.append(div);
+                            $("#col-m-3 .list-group").append(li);
+                        }
+
+                    }
+
+                    const cinema_id = self.children("input[name=cinemaId]").val();
+                    const movie_id = $("#movie_id").val();
+                    $("#cinema_id").val(cinema_id);
+                    $("#col-m-2").find(".showtime-row p").css("color", "#555");
+                    self.find(".showtime-row p").css("color", "#f26b38");
+
+                    $.get("/showtime/movieid="+ movie_id +",cinemaid=" + cinema_id)
+                        .done(decorateTime)
+                        .fail()
+                    // let dumpdata = [{"showDate":"2/14/2018","dayOfWeekLabel":"Wed","showTime": ["14:30", "15:40", "18:30"]},
+                    //     {"showDate":"2/15/2018","dayOfWeekLabel":"Thu","showTime": ["10:30", "11:40", "12:30", "12:30", "12:30", "12:30"]}];
+                    // decorateTime(dumpdata);
+                }
+
+                $("#col-m-2 li[class=fake]").hide();
+                $("#col-m-2 li").not("[class=fake]").remove();
+                for(let item of data) {
+                    console.log(item);
+                    let li = $("<li>");
+                    let div1 = $("<div>", {"class": "showtime-row"});
+                    let p = $("<p>").text(item.name);
+                    let p2 = $("<p>", {"class": "title-sub"}).text(item.address);
+                    let hidden = $("<input>", {"name":"cinemaId", "type": "hidden", "value": item.id});
+
+                    // add li listener
+                    li.click(function(){
+                        let self = $(this);
+                        getTime(self);
+                    })
+
+                    $("#col-m-2 .list-group").append(li.append(div1.append(p, p2), hidden));
+                }
+            }
+
+            const movie_id = self.children("input[name=movieId]").val();
+            $("#movie_id").val(movie_id);
+
+            $.get("/cinema/movieid=" + movie_id)
+                .done(decorateCinema)
+                .fail();
+        }
+
         for(let item of data) {
             // console.log(item);
             let li = $("<li>");
@@ -150,12 +156,13 @@ function getMovieList() {
                 $("#col-m-1").find(".title-movie p").css("color", "#555");
                 self.find(".title-movie p").css("color", "#f26b38");
                 getCinema(self);
-            })
+            });
 
             $("#col-m-1 .list-group").append(li.append(input, div1.append(image, div2.append(p1, p2))));
             // $("#col-m-1 .list-group").append(hidden);
         };
     }
+
     $.get("/movie/list")
         .done(decorateMovie)
         .fail();
@@ -238,11 +245,6 @@ function checkNumberOnly() {
         }
         $(this).val("");
     }
-
-    // $(".showtimes-tickets").keyup(function(evt){
-    //
-    //
-    // })
 }
 
 function getCookie(cname) {
@@ -261,15 +263,16 @@ function getCookie(cname) {
     return "";
 }
 
-function clickContinueEvent() {
-    let uname = getCookie("login");
-    let uid = getCookie("login_id");
-    if (uname == "" || uid == "") {
-        // warn user login
-        $("#loginlistener").click();
-    } else {
-
-    }
+function clickContinueEvent(evt) {
+    // let uname = getCookie("login");
+    // let uid = getCookie("login_id");
+    // if (uname == "" || uid == "") {
+    //     // warn user login
+    //     $("#loginlistener").click();
+    //     evt.preventDefault();
+    // } else {
+        $("#noticket_id").val($("#col-m-3 .showtime-row input:visible").val());
+    // }
 }
 
 // bind event on startup

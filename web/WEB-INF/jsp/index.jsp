@@ -3,9 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cinema</title>
     <link rel="stylesheet" href="/resources/css/font.css">
-    <link rel="stylesheet" href="/resources/css/font-awesome.css">
     <link rel="stylesheet" href="/resources/css/schedule.css">
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
     <script src="/resources/js/schedule.js"></script>

@@ -117,19 +117,40 @@ public class MovieController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+
+            default:
+                break;
+        }
+        resp.getWriter().write(json);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = req.getRequestURI();
+        Scanner scanner = new Scanner(path);
+        String reqType = scanner.useDelimiter("/").next();
+        String param = path.replace("/"+reqType+"/","");
+
+        resp.setContentType("application/json;charset=UTF-8");
+        String json = "";
+        ObjectMapper mapper = new ObjectMapper();
+
+        switch (reqType) {
             case BOOKING: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
                 Scanner scannerSeat = new Scanner(param);
                 String cineIdSeat = req.getParameter("cinema_id");
                 String movieId = req.getParameter("movie_id");
                 String time = req.getParameter("time_id");
+                String noTicket = req.getParameter("noticket_id");
                 Seat seat = cineDao.getSeat(cineIdSeat, time);
-                if(seat != null) {
+                if (seat != null) {
                     try {
                         json = mapper.writeValueAsString(seat);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
+                req.setAttribute("noticket_id", noTicket);
                 req.setAttribute("seat_map", seat);
                 req.setAttribute("time_id", time);
                 req.setAttribute("movie_obj", dao.getMovieById(movieId));
@@ -137,7 +158,7 @@ public class MovieController extends HttpServlet {
                 RequestDispatcher dis = req.getRequestDispatcher("/WEB-INF/jsp/booking.jsp");
                 dis.forward(req, resp);
                 break;
-            case CONFIRM: // /api/confirmation/movieid=<movie_id>,cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm,seats=A1_A2
+            case CONFIRM:
                 Scanner scannerConfirmation = new Scanner(param);
                 String movieIdConfirm = scannerConfirmation.useDelimiter(",")
                         .next().replace("movieid", "");
@@ -164,6 +185,5 @@ public class MovieController extends HttpServlet {
             default:
                 break;
         }
-        resp.getWriter().write(json);
     }
 }

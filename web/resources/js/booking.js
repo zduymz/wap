@@ -13,7 +13,12 @@ $(function(){
     }
 
     function updatePrice() {
-        // need to do
+        $("#total-price").text("");
+        let totalprice = 0;
+        $(".seat-col li[class=active]").each(function(){
+            totalprice += parseInt($("#tprice").val());
+        });
+        $("#total-price").text(totalprice);
     }
 
     $(".seat-col li").not("[class=selected]").click(function(){
