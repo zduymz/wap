@@ -152,6 +152,7 @@ body {
     background-color: #f26b38;
     padding: 10px;
     line-height: 1;
+    cursor: pointer;
 }
 
 .seat-map-wrapper {

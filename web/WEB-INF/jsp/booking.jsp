@@ -109,12 +109,13 @@
         </div>
     </div>
 </div>
-<form action="/" method="post">
-    <input type="hidden" id="movie_id" name="movie_id">
-    <input type="hidden" id="cinema_id" name="cinema_id">
-    <input type="hidden" id="time_id" name="time_id">
+<form action="/confirmation" method="post">
+    <input type="hidden" id="movie_id" name="movie_id" value="${movie_obj.id}">
+    <input type="hidden" id="cinema_id" name="cinema_id" value="${cinema_obj.id}">
+    <input type="hidden" id="time_id" name="time_id" value="${time_id}">
     <input type="hidden" id="noTicket_id" name="noTicket_id">
     <input type="hidden" id="ticketPrice_id" name="ticketPrice_id">
+    <input type="submit" id="confirm_submit">
 </form>
 </body>
 </html>
