@@ -117,7 +117,7 @@ public class MovieController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-            case BOOKING: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
+            case BOOKING:
                 Scanner scannerSeat = new Scanner(param);
                 String cineIdSeat = req.getParameter("cinema_id");
                 String movieId = req.getParameter("movie_id");
