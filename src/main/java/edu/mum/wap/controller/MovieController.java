@@ -8,6 +8,7 @@ import edu.mum.wap.dao.TicketDAO;
 import edu.mum.wap.model.*;
 import javafx.util.Pair;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +19,12 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/seat/*", "/confirmation/*"})
+@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/booking", "/confirmation/*"})
 public class MovieController extends HttpServlet {
     private static final String LIST = "list";
     private static final String MOVIE = "movie";
     private static final String CINE = "cinema";
-    private static final String SEAT = "seat";
+    private static final String BOOKING = "booking";
     private static final String SHOWTIME = "showtime";
     private static final String CONFIRM = "confirmation";
     private MovieDAO dao;
@@ -116,12 +117,11 @@ public class MovieController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-            case SEAT: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
+            case BOOKING: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
                 Scanner scannerSeat = new Scanner(param);
-                String cineIdSeat = scannerSeat.useDelimiter(",")
-                        .next().replace("cinemaid=", "");
-                String time = scannerSeat.useDelimiter(",")
-                        .next().replace("showtime=","");
+                String cineIdSeat = req.getParameter("cinema_id");
+                String movieId = req.getParameter("movie_id");
+                String time = req.getParameter("time_id");
                 Seat seat = cineDao.getSeat(cineIdSeat, time);
                 if(seat != null) {
                     try {
@@ -130,6 +130,12 @@ public class MovieController extends HttpServlet {
                         e.printStackTrace();
                     }
                 }
+                req.setAttribute("seat_map", seat);
+                req.setAttribute("time_id", time);
+                req.setAttribute("movie_obj", dao.getMovieById(movieId));
+                req.setAttribute("cinema_obj", cineDao.getCinema(cineIdSeat));
+                RequestDispatcher dis = req.getRequestDispatcher("/WEB-INF/jsp/booking.jsp");
+                dis.forward(req, resp);
                 break;
             case CONFIRM: // /api/confirmation/movieid=<movie_id>,cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm,seats=A1_A2
                 Scanner scannerConfirmation = new Scanner(param);
@@ -145,11 +151,11 @@ public class MovieController extends HttpServlet {
                 try {
                     if(cineDao.updateSeat(seats, cineIdConfirm, timeConfirm)) {
                         HttpSession session = req.getSession();
-                        User user = (User)session.getAttribute("user");
-                        Ticket ticket = new Ticket(movieIdConfirm, user.getUsername(),
+                        User user = (User)session.getAttribute("userName");
+                        /*Ticket ticket = new Ticket(movieIdConfirm, user.getUsername(),
                                 cineIdConfirm, timeConfirm, now, seats);
-                        ticketDAO.addTicket(ticket);
-                        json = mapper.writeValueAsString(ticket);
+                        ticketDAO.addTicket(ticket);*/
+                        json = mapper.writeValueAsString(user);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

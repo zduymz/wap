@@ -29,9 +29,9 @@ public class ShowDate {
         this.showDate = time.dayOfYear().getAsString();
         this.showTime = time.hourOfDay().getAsString();*/
         Scanner scanner = new Scanner(showTime);
-        this.dayOfWeekLabel = scanner.useDelimiter("_").next();
-        this.showDate = scanner.useDelimiter("_").next();
-        this.showTime = scanner.useDelimiter("_").next();
+        this.dayOfWeekLabel = scanner.useDelimiter(" ").next();
+        this.showDate = scanner.useDelimiter(" ").next();
+        this.showTime = scanner.useDelimiter(" ").next();
     }
 
     public String getShowDate() {
