@@ -47,8 +47,8 @@
 <div id="ci-navbar">
     <nav>
         <ul class="primary-nav">
-            <li class="sub-nav"><a href="/">MUA VE</a></li>
-            <li class="sub-nav"><a href="/">THONG TIN</a></li>
+            <li class="sub-nav"><a href="/index">SCHEDULE</a></li>
+            <li class="sub-nav"><a href="/info">ACCOUNT</a></li>
         </ul>
     </nav>
 </div>
@@ -101,10 +101,13 @@
         </div>
     </div>
 </div>
-<input type="button" id="click-continue" value="Continue >>" class="show-button">
-<input type="hidden" id="movie_id" name="movie_id">
-<input type="hidden" id="cinema_id" name="cinema_id">
-<input type="hidden" id="time_id" name="time_id">
+<form action="/booking" method="post">
+    <input type="submit" id="click-continue" value="Continue >>" class="show-button">
+    <input type="hidden" id="movie_id" name="movie_id">
+    <input type="hidden" id="cinema_id" name="cinema_id">
+    <input type="hidden" id="time_id" name="time_id">
+    <input type="hidden" id="noticket_id" name="noticket_id">
+</form>
 <div id="id01" class="login-form">
     <div class="modal-content">
         <div class="login-form-type">
