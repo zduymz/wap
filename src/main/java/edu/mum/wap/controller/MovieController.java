@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/booking", "/confirmation/*"})
+@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/booking", "/confirmation"})
 public class MovieController extends HttpServlet {
     private static final String LIST = "list";
     private static final String MOVIE = "movie";
@@ -136,7 +136,7 @@ public class MovieController extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
 
         switch (reqType) {
-            case BOOKING: // /api/seat/cinemaid=<cinema_id>,showtime=EEE_mm/dd/yyyy_HH:mm
+            case BOOKING:
                 Scanner scannerSeat = new Scanner(param);
                 String cineIdSeat = req.getParameter("cinema_id");
                 String movieId = req.getParameter("movie_id");
@@ -160,19 +160,16 @@ public class MovieController extends HttpServlet {
                 break;
             case CONFIRM:
                 Scanner scannerConfirmation = new Scanner(param);
-                String movieIdConfirm = scannerConfirmation.useDelimiter(",")
-                        .next().replace("movieid", "");
-                String cineIdConfirm = scannerConfirmation.useDelimiter(",")
-                        .next().replace("cinemaid=", "");
-                String timeConfirm = scannerConfirmation.useDelimiter(",")
-                        .next().replace("showtime=","");
-                String seats = scannerConfirmation.useDelimiter(",")
-                        .next().replace("seats=","");
+                String movieIdConfirm = req.getParameter("movie_id");
+                String cineIdConfirm = req.getParameter("cinema_id");
+                String timeConfirm = req.getParameter("time_id");
+                String seats = req.getParameter("noTicket_id");
+                String ticketprice = req.getParameter("ticketPrice_id");
                 String now = ZonedDateTime.now().toString();
                 try {
                     if(cineDao.updateSeat(seats, cineIdConfirm, timeConfirm)) {
                         HttpSession session = req.getSession();
-                        User user = (User)session.getAttribute("userName");
+                        User user = (User)session.getAttribute("username");
                         /*Ticket ticket = new Ticket(movieIdConfirm, user.getUsername(),
                                 cineIdConfirm, timeConfirm, now, seats);
                         ticketDAO.addTicket(ticket);*/

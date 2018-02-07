@@ -104,7 +104,6 @@ public class CinemaDAO {
     }
 
     public boolean updateSeat(String seat, String cinemaID, String time) {
-        //TODO: update seat status to DAO
-        return true;
+        return cinemasDAO.get(cinemaID).getSeat(time).setSeat(seat);
     }
 }
