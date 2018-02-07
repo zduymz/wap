@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet{
                 if(remember) {
                     cookie.setMaxAge(60*60*24*30);
                 } else {
-                    cookie.setMaxAge(0);
+                    cookie.setMaxAge(-1);
                 }
                 resp.addCookie(cookie);
                 json = mapper.writeValueAsString(new Result(true));

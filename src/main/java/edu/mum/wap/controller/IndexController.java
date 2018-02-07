@@ -11,10 +11,11 @@ public class IndexController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        for(Cookie c : req.getCookies()) {
-            if (c.getName().equals("login_id")) {
-                req.setAttribute("username", c.getValue());
+        if (req.getCookies() != null) {
+            for (Cookie c : req.getCookies()) {
+                if (c.getName().equals("login_id")) {
+                    req.setAttribute("username", c.getValue());
+                }
             }
         }
 

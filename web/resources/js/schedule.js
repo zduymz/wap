@@ -264,15 +264,14 @@ function getCookie(cname) {
 }
 
 function clickContinueEvent(evt) {
-    // let uname = getCookie("login");
-    // let uid = getCookie("login_id");
-    // if (uname == "" || uid == "") {
-    //     // warn user login
-    //     $("#loginlistener").click();
-    //     evt.preventDefault();
-    // } else {
+    let uid = getCookie("login_id");
+    if (uid == "") {
+        // warn user login
+        $("#loginlistener").click();
+        evt.preventDefault();
+    } else {
         $("#noticket_id").val($("#col-m-3 .showtime-row input:visible").val());
-    // }
+    }
 }
 
 // bind event on startup
