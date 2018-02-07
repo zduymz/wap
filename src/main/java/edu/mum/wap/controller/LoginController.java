@@ -7,10 +7,10 @@ import edu.mum.wap.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
+
+import static java.lang.Boolean.*;
 
 @WebServlet({"/login", "/register"})
 public class LoginController extends HttpServlet{
@@ -30,8 +30,21 @@ public class LoginController extends HttpServlet{
         resp.setContentType("application/json;charset=UTF-8");
         String json;
         if(param.equals(LOGIN)) {
-            User user = new User(req.getParameter("uname"), req.getParameter("upassword"));
+            HttpSession session = req.getSession();
+            String name = req.getParameter("uname");
+            String pass = req.getParameter("upassword");
+            boolean remember = Boolean.parseBoolean(req.getParameter("remember"));
+            User user = new User(name, pass);
             if (dao.verifyUser(user)) {
+                session.setAttribute("username", name);
+                session.setMaxInactiveInterval(30*60);
+                Cookie cookie = new Cookie("login_id", name);
+                if(remember) {
+                    cookie.setMaxAge(60*60*24*30);
+                } else {
+                    cookie.setMaxAge(0);
+                }
+                resp.addCookie(cookie);
                 json = mapper.writeValueAsString(new Result(true));
             } else {
                 json = mapper.writeValueAsString(new Result(false));

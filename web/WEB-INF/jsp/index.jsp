@@ -22,7 +22,7 @@
         <div class="col-2">
             <!-- Check cookie, session on jsp to decide show welcome or login -->
             <c:choose>
-                <c:when test="${username}">
+                <c:when test="${username != null}">
                     <%-- user already logged in--%>
                     <div class="welcome">
                         <p>Welcome: ${username} <a href="/logout">[Logout]</a></p>
