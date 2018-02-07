@@ -13,5 +13,6 @@ public class TicketDAO {
     }
 
     public void deleteTicket(int id) {
+        ticketsDb.remove(id);
     }
 }

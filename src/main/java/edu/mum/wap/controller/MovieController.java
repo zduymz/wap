@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.mum.wap.dao.CinemaDAO;
 import edu.mum.wap.dao.MovieDAO;
+import edu.mum.wap.dao.PriceDAO;
 import edu.mum.wap.dao.TicketDAO;
 import edu.mum.wap.model.*;
 import javafx.util.Pair;
@@ -31,6 +32,7 @@ public class MovieController extends HttpServlet {
     private CinemaDAO cineDao;
     private ObjectMapper mapper;
     private TicketDAO ticketDAO;
+    private PriceDAO priceDAO;
 
 
     @Override
@@ -39,6 +41,7 @@ public class MovieController extends HttpServlet {
         cineDao = new CinemaDAO();
         mapper = new ObjectMapper();
         ticketDAO = new TicketDAO();
+        priceDAO = new PriceDAO();
     }
 
     @Override
@@ -155,13 +158,15 @@ public class MovieController extends HttpServlet {
                 req.setAttribute("time_id", time);
                 req.setAttribute("movie_obj", dao.getMovieById(movieId));
                 req.setAttribute("cinema_obj", cineDao.getCinema(cineIdSeat));
+                req.setAttribute("price", priceDAO.getPrice("adult"));
                 RequestDispatcher dis = req.getRequestDispatcher("/WEB-INF/jsp/booking.jsp");
                 dis.forward(req, resp);
                 break;
             case CONFIRM:
                 Scanner scannerConfirmation = new Scanner(param);
-                String movieIdConfirm = req.getParameter("movie_id");
+                Movie movieObject = dao.getMovieById(req.getParameter("movie_id"));
                 String cineIdConfirm = req.getParameter("cinema_id");
+                Cinema cinemaObject = cineDao.getCinema(cineIdConfirm);
                 String timeConfirm = req.getParameter("time_id");
                 String seats = req.getParameter("noTicket_id");
                 String ticketprice = req.getParameter("ticketPrice_id");
@@ -169,11 +174,18 @@ public class MovieController extends HttpServlet {
                 try {
                     if(cineDao.updateSeat(seats, cineIdConfirm, timeConfirm)) {
                         HttpSession session = req.getSession();
-                        User user = (User)session.getAttribute("username");
-                        /*Ticket ticket = new Ticket(movieIdConfirm, user.getUsername(),
-                                cineIdConfirm, timeConfirm, now, seats);
-                        ticketDAO.addTicket(ticket);*/
-                        json = mapper.writeValueAsString(user);
+                        String user = (String)session.getAttribute("username");
+                        Ticket ticket = new Ticket(movieObject, user,
+                                cinemaObject, timeConfirm, now, seats, ticketprice);
+                        ticketDAO.addTicket(ticket);
+                        req.setAttribute("seat", seats);
+                        req.setAttribute("time_id", timeConfirm);
+                        req.setAttribute("book_time", now);
+                        req.setAttribute("movie_obj", movieObject);
+                        req.setAttribute("cinema_obj", cinemaObject);
+                        req.setAttribute("price", priceDAO.getPrice("adult"));
+                        RequestDispatcher confirm = req.getRequestDispatcher("/WEB-INF/jsp/cofirmation.jsp");
+                        confirm.forward(req, resp);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

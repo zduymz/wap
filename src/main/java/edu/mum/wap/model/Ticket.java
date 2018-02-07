@@ -1,23 +1,49 @@
 package edu.mum.wap.model;
 
 public class Ticket {
-    private String movieId;
+    private Movie movieobj;
     private String userId;
-    private String cinemaId;
+    private Cinema cinemaobj;
     private String timeShow;
     private String timeBook;
     private int numOfTicket;
+    private String price;
     private String seats;
 
-    public Ticket(String movieId, String userId, String cinemaId,
-                  String timeShow, String timeBook, String seat) {
-        this.movieId = movieId;
+    public Ticket(Movie movieobj, String userId, Cinema cinemaobj,
+                  String timeShow, String timeBook, String seat, String price) {
+        this.movieobj = movieobj;
         this.userId = userId;
-        this.cinemaId = cinemaId;
+        this.cinemaobj = cinemaobj;
         this.timeShow = timeShow;
         //this.numOfTicket = numOfTicket;
+        this.price = price;
         this.seats = seat;
         this.timeBook = timeBook;
+    }
+
+    public Movie getMovieobj() {
+        return movieobj;
+    }
+
+    public void setMovieobj(Movie movieobj) {
+        this.movieobj = movieobj;
+    }
+
+    public Cinema getCinemaobj() {
+        return cinemaobj;
+    }
+
+    public void setCinemaobj(Cinema cinemaobj) {
+        this.cinemaobj = cinemaobj;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getTimeShow() {
@@ -44,28 +70,12 @@ public class Ticket {
         this.seats = seats;
     }
 
-    public String getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
-    }
-
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(String cinemaId) {
-        this.cinemaId = cinemaId;
     }
 
     public int getNumOfTicket() {
