@@ -15,6 +15,11 @@ public class IndexController extends HttpServlet {
             for (Cookie c : req.getCookies()) {
                 if (c.getName().equals("login_id")) {
                     req.setAttribute("username", c.getValue());
+                    //Set user id to session
+                    HttpSession session = req.getSession();
+                    if(!session.isNew()) {
+                        session.setAttribute("username", c.getValue());
+                    }
                 }
             }
         }
