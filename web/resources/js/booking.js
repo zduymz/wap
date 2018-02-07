@@ -25,14 +25,10 @@ $(function(){
             // in case shit happen
             window.location.href = '/index';
         } else {
-            let totalseat = 0;
-            $(".seat-col li[class=active]").each(function(){
-                totalseat += 1;
-            });
 
-            if (totalseat != parseInt($("#seatNo").val())) {
+            if (parseInt($("#seatNo").val()) != 0) {
                 //show popup
-                // alert("you need to fill all seat");
+                alert("you need to fill all seat");
                 return false;
             }
 
