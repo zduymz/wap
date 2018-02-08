@@ -256,3 +256,16 @@ ul {
     background-color: #dbdee1;
 }
 
+.welcome a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.welcome a:hover {
+    text-decoration: underline;
+}
+
+.welcome a:visited {
+    text-decoration: none;
+    color: inherit;
+}

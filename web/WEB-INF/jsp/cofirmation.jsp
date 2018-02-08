@@ -20,7 +20,7 @@
     </div>
     <div class="col-2">
       <!-- Check cookie, session on jsp to decide show welcome or login -->
-      <c:if test="${username}">
+      <c:if test="${username != null}">
         <div class="welcome">
           <p>Welcome: ${username} <a href="/logout">[Logout]</a></p>
         </div>
@@ -86,6 +86,6 @@
       </div>
     </div>
   </div>
-</div>
+  </div></div>
 </body>
 </html>

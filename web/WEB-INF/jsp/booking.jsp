@@ -21,7 +21,7 @@
         </div>
         <div class="col-2">
             <!-- Check cookie, session on jsp to decide show welcome or login -->
-            <c:if test="${username}">
+            <c:if test="${username != null}">
                 <div class="welcome">
                     <p>Welcome: ${username} <a href="/logout">[Logout]</a></p>
                 </div>
@@ -66,7 +66,7 @@
                                         <li<c:if test="${seat == 1}">
                                             class="selected"
                                             </c:if>
-                                        style="transform: translate(${(vs.index+1)*100}%,0)">${vs.index+1}</li>
+                                        style="transform: translate(${(vs.index+1)*110}%,0)">${vs.index+1}</li>
                                     </c:forEach>
                                 </ul>
                             </li>
@@ -102,7 +102,7 @@
                         <div class="select-ticket">
                             <a>Confirm</a>
                         </div>
-                        <input type="hidden" id="tprice" value="10">
+                        <input type="hidden" id="tprice" value="${price}">
                     </div>
                 </div>
             </div>
