@@ -384,4 +384,8 @@ public class CinemaDAO {
     public boolean updateSeat(String _seat1, String cinemaID, String time) {
         return cinemasDAO.get(cinemaID).getSeat(time).setSeat(_seat1);
     }
+
+    public int getAvailableSeat(String cinemaID, String time) {
+        return cinemasDAO.get(cinemaID).getSeat(time).getAvailableSeat();
+    }
 }

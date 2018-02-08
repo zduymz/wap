@@ -34,6 +34,7 @@ public class Authorization implements Filter {
                 uri.startsWith("/logout") ||
                 uri.startsWith("/register") ||
                 uri.startsWith("/ticketinfo") ||
+                uri.startsWith("/emptyseat") ||
                 uri.startsWith("/cinema") ) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {

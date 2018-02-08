@@ -36,4 +36,15 @@ public class Seat {
         }
         return ret;
     }
+
+    public int getAvailableSeat() {
+        int ret = 0;
+        for(Integer[] a : seats.values()) {
+            for(int i = 0; i< a.length; i++) {
+                if(a[i] == 0)
+                    ret++;
+            }
+        }
+        return ret;
+    }
 }
