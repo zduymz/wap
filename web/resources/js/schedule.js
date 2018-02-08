@@ -299,13 +299,15 @@ function getCookie(cname) {
 function clickContinueEvent(evt) {
 
     function checkTicketAvailable(data) {
-        console.log(data);
         let totalAvailable = parseInt(data);
-        let pickedSeat = parseInt($("#noticket_id"));
+        let pickedSeat = parseInt($("#col-m-3 .showtime-row input:visible").val());
         if ( pickedSeat > totalAvailable ) {
             $("#popupContent ").text("Please choose lower than " + totalAvailable);
             $("#id03").show();
+            evt.stopPropagation();
             evt.preventDefault();
+        } else {
+            $("#noticket_id").val($("#col-m-3 .showtime-row input:visible").val());
         }
     }
 
@@ -321,10 +323,8 @@ function clickContinueEvent(evt) {
              "time_id" : $("#time_id").val()
             }})
             .done(checkTicketAvailable)
-            .fail();
-        evt.preventDefault();
+            .fail(function(){evt.preventDefault();});
 
-        $("#noticket_id").val($("#col-m-3 .showtime-row input:visible").val());
     }
 }
 

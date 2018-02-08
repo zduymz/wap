@@ -132,7 +132,7 @@ public class CinemaDAO {
         _seat9.put("C", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat9.put("D", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat9.put("E", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat9.put("F", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat9.put("F", new Integer[]{0, 0, 0, 0, 1, 0, 0, 0, 0, 0});
         _seat9.put("G", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat9.put("H", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat9.put("I", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
