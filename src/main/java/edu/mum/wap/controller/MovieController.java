@@ -101,16 +101,19 @@ public class MovieController extends HttpServlet {
                 List<ShowDate> list = cineDao.getShowDate(cineId, movie);
                 Map<String, Show> listShow = new HashMap<>();
                 for(ShowDate date : list) {
+                    String _date = date.getShowDate();
+                    String _time = date.getShowTime();
                     if(listShow.isEmpty()) {
-                        Show show = new Show(date.getShowDate(), date.getDayOfWeekLabel());
-                        show.addTime(date.getShowTime());
-                        listShow.put(date.getShowDate(), show);
+                        Show show = new Show(_date, date.getDayOfWeekLabel());
+                        show.addTime(_time);
+                        listShow.put(_date, show);
                     } else {
-                        Show show = listShow.get(date.getShowDate());
+                        Show show = listShow.get(_date);
                         if(show == null) {
-                            listShow.put(date.getShowDate(), new Show(date));
+                            Show _show = new Show(date);
+                            listShow.put(_date, _show);
                         } else {
-                            show.addTime(date.getShowTime());
+                            show.addTime(_time);
                         }
                     }
                 }

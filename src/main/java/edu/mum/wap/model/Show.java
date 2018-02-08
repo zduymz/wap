@@ -6,18 +6,17 @@ import java.util.List;
 public class Show {
     private String showDate;
     private String dayOfWeekLabel;
-    private List<String> showTime;
+    private List<String> showTime = new ArrayList<>();
 
     public Show(String date, String day) {
         this.showDate = date;
         this.dayOfWeekLabel = day;
-        showTime = new ArrayList<>();
     }
 
     public Show(ShowDate d) {
         this.showDate = d.getShowDate();
         this.dayOfWeekLabel = d.getDayOfWeekLabel();
-        showTime.add(d.getShowTime());
+        this.showTime.add(d.getShowTime());
     }
 
     public void addTime(String time) {

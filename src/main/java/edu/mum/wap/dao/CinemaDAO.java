@@ -76,6 +76,10 @@ public class CinemaDAO {
                 movies.getMovieById("2"), seat);
         c4.addSchedule(new ShowDate("2/14/2018", "Wed", "16:30"),
                 movies.getMovieById("3"), seat);
+        c4.addSchedule(new ShowDate("2/14/2018", "Wed", "18:30"),
+                movies.getMovieById("6"), seat);
+        c4.addSchedule(new ShowDate("2/14/2018", "Wed", "20:30"),
+                movies.getMovieById("6"), seat);
         cinemasDAO.put("1",c1);
         cinemasDAO.put("2",c2);
         cinemasDAO.put("3",c3);
