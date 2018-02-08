@@ -297,12 +297,33 @@ function getCookie(cname) {
 }
 
 function clickContinueEvent(evt) {
+
+    function checkTicketAvailable(data) {
+        console.log(data);
+        let totalAvailable = parseInt(data);
+        let pickedSeat = parseInt($("#noticket_id"));
+        if ( pickedSeat > totalAvailable ) {
+            $("#popupContent ").text("Please choose lower than " + totalAvailable);
+            $("#id03").show();
+            evt.preventDefault();
+        }
+    }
+
     let uid = getCookie("login_id");
     if (uid == "") {
         // warn user login
         $("#loginlistener").click();
         evt.preventDefault();
     } else {
+        // check number of seats available
+        $.ajax("/emptyseat",{ "type": "get" , "async" : false, "data" : {
+            "cinema_id": $("#movie_id").val(),
+             "time_id" : $("#time_id").val()
+            }})
+            .done(checkTicketAvailable)
+            .fail();
+        evt.preventDefault();
+
         $("#noticket_id").val($("#col-m-3 .showtime-row input:visible").val());
     }
 }
