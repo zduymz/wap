@@ -29,7 +29,7 @@ public class MovieController extends HttpServlet {
     private static final String SHOWTIME = "showtime";
     private static final String CONFIRM = "confirmation";
     private static final String INFO = "ticketinfo";
-    private static final String EMTYSEAT = "emtyseat";
+    private static final String EMTYSEAT = "emptyseat";
     private MovieDAO dao;
     private CinemaDAO cineDao;
     private ObjectMapper mapper;
