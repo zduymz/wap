@@ -177,7 +177,8 @@ public class MovieController extends HttpServlet {
                         String user = (String)session.getAttribute("username");
                         Ticket ticket = new Ticket(movieObject, user,
                                 cinemaObject, timeConfirm, now, seats, ticketprice);
-                        ticketDAO.addTicket(ticket);
+                        int ticketId = ticketDAO.addTicket(ticket);
+                        req.setAttribute("ticket_id", ticketId);
                         req.setAttribute("seat", seats);
                         req.setAttribute("time_id", timeConfirm);
                         req.setAttribute("book_time", now);

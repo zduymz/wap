@@ -1,6 +1,7 @@
 package edu.mum.wap.model;
 
 public class Ticket {
+    private int id = 0;
     private Movie movieobj;
     private String userId;
     private Cinema cinemaobj;
@@ -20,6 +21,14 @@ public class Ticket {
         this.price = price;
         this.seats = seat;
         this.timeBook = timeBook;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Movie getMovieobj() {
