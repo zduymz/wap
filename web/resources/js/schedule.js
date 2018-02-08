@@ -30,21 +30,21 @@ function disablePopup(evt){
     evt.stopPropagation();
 }
 
-function checkPassword() {
-    var password = $("#id02 input[name='upassword']").val();
-    var confirm_password = $("#id02 input[name='upasswordCheck']").val();
-
-    function validatePassword(){
-        if(password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Passwords Don't Match");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-}
+// function checkPassword() {
+//     var password = $("#id02 input[name='upassword']").val();
+//     var confirm_password = $("#id02 input[name='upasswordCheck']").val();
+//
+//     function validatePassword(){
+//         if(password.value != confirm_password.value) {
+//             confirm_password.setCustomValidity("Passwords Don't Match");
+//         } else {
+//             confirm_password.setCustomValidity('');
+//         }
+//     }
+//
+//     password.onchange = validatePassword;
+//     confirm_password.onkeyup = validatePassword;
+// }
 
 
 function getMovieList() {
@@ -201,7 +201,30 @@ function loginEvent(){
     $.post("/login", {"uname": uname, "upassword": upassword, "remember": rememberMe}).done(checkLoginReturn).fail();
 }
 
-function registerEvent() {
+function registerEvent(evt) {
+    function checkRegsterFields() {
+        if ($("#id02 input[name='uname']").val() == "") {
+            return false;
+        }
+        if ($("#id02 input[name='upassword']").val() == "") {
+            return false;
+        }
+        if ($("#id02 input[name='upasswordCheck']").val() == "") {
+            return false;
+        }
+        if ($("#id02 input[name='uemail']").val() == "") {
+            return false;
+        } else {
+            let email = $("#id02 input[name='uemail']").val();
+            let patt = new RegExp("^\\w+@\\w+\\..{2,3}(.{2,3})?$");
+            let res = patt.test(email);
+            if (res == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     function checkRegisterReturn(data) {
         // console.log(data);
         if (data.result == "successful") {
@@ -210,6 +233,7 @@ function registerEvent() {
             registerFail(data.reason);
         }
     }
+
     function registerSuccess() {
         $("#id02").hide();
         $("#popupContent ").text("New account is created. Please login");
@@ -220,6 +244,14 @@ function registerEvent() {
         $("#id02").hide();
         $("#popupContent ").text("Error: " + reason);
         $("#id03").show();
+    }
+
+    if (checkRegsterFields() == false) {
+        $("#id02").hide();
+        $("#popupContent ").text("Please check your inputs. Something is wrong");
+        $("#id03").show();
+        evt.stopPropagation();
+        return;
     }
 
     let uname = $("#id02 input[name='uname']").val();
