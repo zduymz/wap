@@ -84,7 +84,7 @@ body {
     text-decoration:  none;
 }
 
-.ci-navbar .primary-nav li:not(:last-child) {
+#ci-navbar .primary-nav li:not(:last-child) {
     background: url("/resources/media/line-menu.png") no-repeat center right;
 }
 
@@ -182,4 +182,8 @@ table {
 .welcome a:visited {
     text-decoration: none;
     color: inherit;
+}
+
+#ci-navbar .primary-nav .sub-nav:not(:last-child) {
+    background: url("/resources/media/line-menu.png") no-repeat center right;
 }

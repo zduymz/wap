@@ -21,7 +21,7 @@
     <div class="container">
         <div class="col-1">
             <div class="header-logo">
-                <a href="/">
+                <a href="/index">
                     <img src="/resources/media/cinema-logo.png" alt="Cinema Logo">
                 </a>
             </div>

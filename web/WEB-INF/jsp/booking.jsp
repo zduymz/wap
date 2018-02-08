@@ -14,7 +14,7 @@
     <div class="container">
         <div class="col-1">
             <div class="header-logo">
-                <a href="/">
+                <a href="/index">
                     <img src="/resources/media/cinema-logo.png" alt="Cinema Logo">
                 </a>
             </div>
@@ -62,7 +62,7 @@
                             <li class="index">${key}</li>
                             <li class="seat-col-wrapper">
                                 <ul class="seat-col">
-                                    <c:forEach items="${seat_map.getSeats().get(key)}" var="seat" varStatus="vs">
+                                    <c:forEach items="${seat_map.seats.get(key)}" var="seat" varStatus="vs">
                                         <li<c:if test="${seat == 1}">
                                             class="selected"
                                             </c:if>
