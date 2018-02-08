@@ -39,10 +39,11 @@ public class LoginController extends HttpServlet{
                 session.setAttribute("username", name);
                 session.setMaxInactiveInterval(30*60);
                 Cookie cookie = new Cookie("login_id", name);
+                cookie.setMaxAge(-1); //session cookie
                 if(remember) {
-                    cookie.setMaxAge(60*60*24*30);
-                } else {
-                    cookie.setMaxAge(-1);
+                    Cookie c = new Cookie("name", name);
+                    c.setMaxAge(60*60*24*30);
+                    resp.addCookie(c);
                 }
                 resp.addCookie(cookie);
                 json = mapper.writeValueAsString(new Result(true));

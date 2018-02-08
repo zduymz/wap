@@ -1,6 +1,7 @@
 
 function enableLogin(evt) {
     $("#id01").css("display", "block");
+    rememberMeCheck();
     evt.stopPropagation();
 }
 
@@ -274,8 +275,17 @@ function clickContinueEvent(evt) {
     }
 }
 
+function rememberMeCheck() {
+    let name = getCookie("name");
+    if (name != "") {
+        $("#id01 .login-form-container input[name=uname]").val(name);
+    }
+}
+
 // bind event on startup
 $(getMovieList);
+$(checkNumberOnly);
+$(rememberMeCheck);
 $(function(){
     $("#click-continue").hide();
     $("#loginlistener").click(enableLogin);
@@ -288,5 +298,3 @@ $(function(){
     $(window).click(disablePopup);
     $("#click-continue").click(clickContinueEvent);
 });
-
-$(checkNumberOnly);
