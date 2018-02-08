@@ -64,11 +64,11 @@ public class CinemaDAO {
         _seat3.put("A", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("B", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("C", new Integer[]{0, 1, 0, 1, 0, 0, 0, 0, 0, 0});
-        _seat3.put("D", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat3.put("D", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 1, 0, 0, 0});
-        _seat3.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat3.put("F", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("G", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat3.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat3.put("H", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("I", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat3.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
 
@@ -198,9 +198,9 @@ public class CinemaDAO {
         _seat15.put("C", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat15.put("D", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat15.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat15.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat15.put("F", new Integer[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 0});
         _seat15.put("G", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat15.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat15.put("H", new Integer[]{0, 1, 0, 0, 0, 1, 0, 0, 0, 0});
         _seat15.put("I", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat15.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
 
@@ -209,20 +209,20 @@ public class CinemaDAO {
         _seat16.put("C", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat16.put("D", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat16.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat16.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat16.put("F", new Integer[]{0, 1, 0, 0, 0, 1, 0, 0, 0, 0});
         _seat16.put("G", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat16.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat16.put("I", new Integer[]{0, 1, 0, 1, 1, 0, 0, 0, 0, 0});
-        _seat16.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat16.put("I", new Integer[]{0, 1, 0, 1, 1, 0, 0, 1, 0, 0});
+        _seat16.put("J", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
 
         _seat17.put("A", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("B", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("C", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("D", new Integer[]{0, 1, 0, 1, 0, 1, 0, 1, 0, 0});
-        _seat17.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat17.put("E", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("G", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat17.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat17.put("H", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("I", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat17.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
 
@@ -271,14 +271,14 @@ public class CinemaDAO {
         _seat21.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
 
         _seat22.put("A", new Integer[]{0, 1, 0, 0, 1, 0, 0, 0, 0, 0});
-        _seat22.put("B", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat22.put("B", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat22.put("C", new Integer[]{0, 1, 0, 0, 1, 0, 0, 0, 0, 0});
-        _seat22.put("D", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat22.put("D", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat22.put("E", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat22.put("F", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat22.put("F", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat22.put("G", new Integer[]{0, 1, 0, 0, 1, 0, 0, 0, 0, 0});
         _seat22.put("H", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
-        _seat22.put("I", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
+        _seat22.put("I", new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
         _seat22.put("J", new Integer[]{0, 1, 0, 0, 0, 0, 0, 0, 0, 0});
 
         Seat seat1 = new Seat(_seat1);

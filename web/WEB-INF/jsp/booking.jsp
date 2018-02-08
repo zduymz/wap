@@ -62,7 +62,7 @@
                             <li class="index">${key}</li>
                             <li class="seat-col-wrapper">
                                 <ul class="seat-col">
-                                    <c:forEach items="${seat_map.getSeats().get(key)}" var="seat" varStatus="vs">
+                                    <c:forEach items="${seat_map.seats.get(key)}" var="seat" varStatus="vs">
                                         <li<c:if test="${seat == 1}">
                                             class="selected"
                                             </c:if>

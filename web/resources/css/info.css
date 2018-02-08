@@ -84,7 +84,7 @@ body {
     text-decoration:  none;
 }
 
-.ci-navbar .primary-nav li:not(:last-child) {
+#ci-navbar .primary-nav li:not(:last-child) {
     background: url("/resources/media/line-menu.png") no-repeat center right;
 }
 
