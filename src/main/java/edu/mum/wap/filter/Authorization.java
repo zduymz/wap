@@ -32,6 +32,7 @@ public class Authorization implements Filter {
                 uri.startsWith("/showtime") ||
                 uri.startsWith("/login") ||
                 uri.startsWith("/logout") ||
+                uri.startsWith("/register") ||
                 uri.startsWith("/cinema") ) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
