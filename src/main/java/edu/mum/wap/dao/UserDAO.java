@@ -40,4 +40,8 @@ public class UserDAO {
     public boolean verifyUser(User user) {
         return moviesDb.containsValue(user);
     }
+
+    public User getUserInfo(String username) {
+        return moviesDb.get(username);
+    }
 }

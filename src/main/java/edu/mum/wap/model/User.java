@@ -1,7 +1,10 @@
 package edu.mum.wap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Objects;
 
+@JsonIgnoreProperties(value = { "password" })
 public class User {
     private String username;
     private String password;

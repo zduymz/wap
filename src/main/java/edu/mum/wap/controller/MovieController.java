@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/booking", "/confirmation"})
+@WebServlet({"/movie/list", "/cinema/*", "/showtime/*", "/booking", "/confirmation", "/ticketinfo"})
 public class MovieController extends HttpServlet {
     private static final String LIST = "list";
     private static final String MOVIE = "movie";
@@ -28,6 +28,7 @@ public class MovieController extends HttpServlet {
     private static final String BOOKING = "booking";
     private static final String SHOWTIME = "showtime";
     private static final String CONFIRM = "confirmation";
+    private static final String INFO = "ticketinfo";
     private MovieDAO dao;
     private CinemaDAO cineDao;
     private ObjectMapper mapper;
@@ -123,7 +124,14 @@ public class MovieController extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-
+            case INFO:
+                String userNameInfo = (String)req.getSession().getAttribute("username");
+                List<Ticket> ticketList = ticketDAO.getTicketByUserId(userNameInfo);
+                try {
+                    json = mapper.writeValueAsString(ticketList);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             default:
                 break;
         }
