@@ -51,7 +51,6 @@
                 class: active
              -->
             <div class="main-pane">
-                <p>Your booking is successful. This is ticket information:</p>
                 <div class="movie-info">
                     <!-- This information from JSP-->
                     <div class="ticket-container">
