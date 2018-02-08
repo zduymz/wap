@@ -184,7 +184,7 @@ public class MovieController extends HttpServlet {
                         req.setAttribute("book_time", now);
                         req.setAttribute("movie_obj", movieObject);
                         req.setAttribute("cinema_obj", cinemaObject);
-                        req.setAttribute("price", priceDAO.getPrice("adult"));
+                        req.setAttribute("price", ticketprice);
                         RequestDispatcher confirm = req.getRequestDispatcher("/WEB-INF/jsp/cofirmation.jsp");
                         confirm.forward(req, resp);
                     }

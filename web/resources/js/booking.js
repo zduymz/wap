@@ -56,6 +56,7 @@ $(function(){
         $(".seat-col li[class=active]").each(function(){
             totalprice += parseInt($("#tprice").val());
         });
+        $("#ticketPrice_id").val(totalprice);
         $("#total-price").text(totalprice);
     }
 
